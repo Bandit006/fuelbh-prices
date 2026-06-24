@@ -1,0 +1,48 @@
+# Banzeen - automatic monthly price update
+#
+# This runs by itself on the 2nd of every month. You do not need a
+# computer on or any app open. GitHub runs it in the cloud, updates
+# prices.json, and publishes it. Every Banzeen app then sees the new
+# data automatically on its next refresh.
+#
+# It can also be run any time by hand from the Actions tab
+# (the "Run workflow" button).
+
+name: Update Fuel Prices
+
+on:
+  schedule:
+    # 06:00 UTC (09:00 Bahrain) on the 2nd of each month.
+    - cron: "0 6 2 * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the files
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Update prices.json
+        run: python update_prices.py
+
+      - name: Commit and publish if anything changed
+        run: |
+          git config user.name "Banzeen Bot"
+          git config user.email "bot@fuelbh.app"
+          git add prices.json
+          if git diff --staged --quiet; then
+            echo "No change this run."
+          else
+            git commit -m "Auto update fuel prices ($(date +%Y-%m))"
+            git push
+            echo "Published updated prices.json"
+          fi
