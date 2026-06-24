@@ -1,0 +1,54 @@
+{
+  "country": "BH",
+  "currency": "BHD",
+  "effectiveDate": "2026-06-23",
+  "updatedAt": "2026-06-23T10:43:28Z",
+  "source": "carry",
+  "prices": [
+    {
+      "fuelType": "jayyid91",
+      "pricePerLiter": 0.233
+    },
+    {
+      "fuelType": "mumtaz95",
+      "pricePerLiter": 0.269
+    },
+    {
+      "fuelType": "super98",
+      "pricePerLiter": 0.362
+    },
+    {
+      "fuelType": "diesel",
+      "pricePerLiter": 0.229
+    }
+  ],
+  "history": [
+    {
+      "month": "2026-02",
+      "prices": {
+        "jayyid91": 0.218,
+        "mumtaz95": 0.235,
+        "super98": 0.265,
+        "diesel": 0.2
+      }
+    },
+    {
+      "month": "2026-04",
+      "prices": {
+        "jayyid91": 0.223,
+        "mumtaz95": 0.253,
+        "super98": 0.314,
+        "diesel": 0.22
+      }
+    },
+    {
+      "month": "2026-05",
+      "prices": {
+        "jayyid91": 0.233,
+        "mumtaz95": 0.269,
+        "super98": 0.362,
+        "diesel": 0.229
+      }
+    }
+  ]
+}
